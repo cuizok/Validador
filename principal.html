@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar CURP y RFC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Tarjeta para el formulario -->
+        <div class="card mt-4">
+            <h4 class="text-center">Validar CURP y RFC</h4>
+            
+            <div class="form-group">
+                <label for="curp">CURP:</label>
+                <input type="text" id="curp" class="form-control" placeholder="Ingresa tu CURP" maxlength="25" required>
+                <small id="curpError" class="error"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="rfc">RFC:</label>
+                <input type="text" id="rfc" class="form-control" placeholder="Ingresa tu RFC" maxlength="25" required>
+                <small id="rfcError" class="error"></small>
+            </div>
+            
+            <div class="d-flex justify-content-around">
+                <button type="button" class="btn btn-outline-success" onclick="validar()">Validar</button>
+            </div>
+        </div>
+
+        <!-- Contenedor para los resultados de la validación -->
+        <div class="card mt-4">
+            <h4 class="text-center">Resultados de Validación</h4>
+            <div id="resultado"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
