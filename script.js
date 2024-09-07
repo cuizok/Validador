@@ -1,9 +1,9 @@
 function calcularEdad(fecha) {
     const hoy = new Date();
     const anioNacimiento = parseInt(fecha.substring(0, 2), 10);
-    const mesNacimiento = parseInt(fecha.substring(2, 4), 10) - 1; // Restamos 1 porque los meses comienzan desde 0
+    const mesNacimiento = parseInt(fecha.substring(2, 4), 10) - 1; 
     const diaNacimiento = parseInt(fecha.substring(4, 6), 10);
-    let anioCompleto = anioNacimiento + (anioNacimiento < 50 ? 2000 : 1900); // Si es menor a 50, se considera como 2000+
+    let anioCompleto = anioNacimiento + (anioNacimiento < 50 ? 2000 : 1900); 
 
     const fechaNacimiento = new Date(anioCompleto, mesNacimiento, diaNacimiento);
     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
@@ -23,7 +23,7 @@ function validar() {
     
     curpError.textContent = '';
     rfcError.textContent = '';
-    resultado.innerHTML = ''; // Limpiar resultados previos
+    resultado.innerHTML = ''; 
 
     if (curp.length !== 18) {
         curpError.textContent = curp.length < 18 ? 'La CURP debe tener exactamente 18 caracteres. Faltan ' + (18 - curp.length) + ' caracteres.' : 'La CURP debe tener exactamente 18 caracteres. Sobran ' + (curp.length - 18) + ' caracteres.';
