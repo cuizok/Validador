@@ -52,7 +52,7 @@ function validar() {
             const edad = calcularEdad(fecha);
             if (curpError.textContent === '') {
                 resultado.innerHTML += `<p><strong>CURP:</strong> ${curp}</p>
-                                        <p><strong>Edad calculada:</strong> ${edad} años</p>`;
+                                        <p><strong>Edad:</strong> ${edad} años</p>`;
             }
         }
     }
