@@ -1,9 +1,9 @@
 function calcularEdad(fecha) {
     const hoy = new Date();
     const anioNacimiento = parseInt(fecha.substring(0, 2), 10);
-    const mesNacimiento = parseInt(fecha.substring(2, 4), 10) - 1; // Restamos 1 porque los meses comienzan desde 0
+    const mesNacimiento = parseInt(fecha.substring(2, 4), 10) - 1;
     const diaNacimiento = parseInt(fecha.substring(4, 6), 10);
-    let anioCompleto = anioNacimiento + (anioNacimiento < 50 ? 2000 : 1900); // Si es menor a 50, se considera como 2000+
+    let anioCompleto = anioNacimiento + (anioNacimiento < 50 ? 2000 : 1900);
 
     const fechaNacimiento = new Date(anioCompleto, mesNacimiento, diaNacimiento);
     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
@@ -23,34 +23,42 @@ function validar() {
     
     curpError.textContent = '';
     rfcError.textContent = '';
-    resultado.innerHTML = ''; // Limpiar resultados previos
+    resultado.innerHTML = '';
+
+    let validacionCurp = true;
+    let validacionRfc = true;
 
     if (curp.length !== 18) {
         curpError.textContent = curp.length < 18 ? 'La CURP debe tener exactamente 18 caracteres. Faltan ' + (18 - curp.length) + ' caracteres.' : 'La CURP debe tener exactamente 18 caracteres. Sobran ' + (curp.length - 18) + ' caracteres.';
+        validacionCurp = false;
     } else {
         const letras = /^[A-Z]{4}/;
         if (!letras.test(curp.substring(0, 4))) {
             curpError.textContent = 'Los primeros 4 caracteres de la CURP deben ser letras.';
+            validacionCurp = false;
         }
 
         const sexo = curp.charAt(10);
         if (sexo !== 'H' && sexo !== 'M') {
             curpError.textContent = 'El identificador del sexo en la CURP debe ser H (Hombre) o M (Mujer).';
+            validacionCurp = false;
         }
 
         const estadosValidos = ['AS', 'BC', 'BS', 'CC', 'CL', 'CM', 'CS', 'CH', 'DF', 'DG', 'GT', 'GR', 'HG', 'JC', 'MC', 'MN', 'MS', 'NT', 'NL', 'OC', 'PL', 'QT', 'QR', 'SP', 'SL', 'SR', 'TC', 'TS', 'TL', 'VZ', 'YN', 'ZS', 'NE'];
         const estado = curp.substring(11, 13);
         if (!estadosValidos.includes(estado)) {
             curpError.textContent = 'El identificador del estado en la CURP no es válido.';
+            validacionCurp = false;
         }
 
         const fecha = curp.substring(4, 10);
         const fechaRegex = /^\d{6}$/;
         if (!fechaRegex.test(fecha)) {
             curpError.textContent = 'Los dígitos de la fecha en la CURP no son válidos.';
+            validacionCurp = false;
         } else {
             const edad = calcularEdad(fecha);
-            if (curpError.textContent === '') {
+            if (validacionCurp) {
                 resultado.innerHTML += `<p><strong>CURP:</strong> ${curp}</p>
                                         <p><strong>Edad calculada:</strong> ${edad} años</p>`;
             }
@@ -59,18 +67,25 @@ function validar() {
 
     if (rfc.length !== 13) {
         rfcError.textContent = rfc.length < 13 ? 'El RFC debe tener exactamente 13 caracteres. Faltan ' + (13 - rfc.length) + ' caracteres.' : 'El RFC debe tener exactamente 13 caracteres. Sobran ' + (rfc.length - 13) + ' caracteres.';
+        validacionRfc = false;
     } else {
         const letrasRFC = /^[A-Z]{4}/;
         if (!letrasRFC.test(rfc.substring(0, 4))) {
             rfcError.textContent = 'Los primeros 4 caracteres del RFC deben ser letras.';
+            validacionRfc = false;
         }
 
-        if (rfcError.textContent === '') {
+        if (validacionRfc) {
             resultado.innerHTML += `<p><strong>RFC:</strong> ${rfc}</p>`;
         }
     }
 
-    if (curp.length === 18 && rfc.length === 13 && curpError.textContent === '' && rfcError.textContent === '') {
-        alert('CURP y RFC válidos.');
+    if (validacionCurp && validacionRfc) {
+        Swal.fire({
+            title: 'Validación Exitosa',
+            text: 'CURP y RFC válidos.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
     }
 }
