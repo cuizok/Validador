@@ -3,37 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validar CURP y RFC</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Validador CURP & RFC</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    >
+
     <link rel="stylesheet" href="estilos.css">
 </head>
-<body>
-    <div class="container">
-        <div class="card mt-4">
-            <h4 class="text-center">Validar CURP y RFC</h4>
-            
-            <div class="form-group">
-                <label for="curp">CURP:</label>
-                <input type="text" id="curp" class="form-control" placeholder="Ingresa tu CURP" maxlength="25" required>
-                <small id="curpError" class="error"></small>
-            </div>
-            
-            <div class="form-group">
-                <label for="rfc">RFC:</label>
-                <input type="text" id="rfc" class="form-control" placeholder="Ingresa tu RFC" maxlength="25" required>
-                <small id="rfcError" class="error"></small>
-            </div>
-            
-            <div class="d-flex justify-content-around">
-                <button type="button" class="btn btn-outline-success" onclick="validar()">Validar</button>
-            </div>
-        </div>
 
-        <div class="card mt-4">
-            <h4 class="text-center">Resultados de Validación</h4>
-            <div id="resultado"></div>
-        </div>
-    </div>
+<body>
+
+    <main class="validator-wrapper">
+
+        <section class="validator-card">
+
+            <!-- HEADER -->
+            <header class="validator-header">
+
+                <div class="brand-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <span class="eyebrow">HERRAMIENTA DE VALIDACIÓN</span>
+
+                    <h1>CURP & RFC</h1>
+
+                    <p>
+                        Verifica la estructura y correspondencia
+                        de tus datos fiscales.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <!-- FORMULARIO -->
+            <form id="validationForm">
+
+                <div class="form-section">
+
+                    <div class="section-title">
+                        <span class="section-number">01</span>
+
+                        <div>
+                            <h2>Datos de identificación</h2>
+                            <p>Ingresa la información exactamente como aparece en tus documentos.</p>
+                        </div>
+                    </div>
+
+
+                    <!-- CURP -->
+                    <div class="input-group-custom">
+
+                        <label for="curp">
+                            CURP
+                            <span>18 caracteres</span>
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-prefix">CURP</span>
+
+                            <input
+                                type="text"
+                                id="curp"
+                                maxlength="18"
+                                placeholder="Ej. GARC850101HGTXXX00"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                        <small id="curpError" class="error"></small>
+
+                    </div>
+
+
+                    <!-- RFC -->
+                    <div class="input-group-custom">
+
+                        <label for="rfc">
+                            RFC
+                            <span>13 caracteres</span>
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-prefix">RFC</span>
+
+                            <input
+                                type="text"
+                                id="rfc"
+                                maxlength="13"
+                                placeholder="Ej. GARC850101XXX"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                        <small id="rfcError" class="error"></small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÓN -->
+                <button
+                    type="button"
+                    class="validate-button"
+                    onclick="validar()"
+                >
+                    <span>Validar información</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+            </form>
+
+
+            <!-- RESULTADO -->
+            <section class="results-section">
+
+                <div class="results-header">
+
+                    <div>
+                        <span class="eyebrow">RESULTADO</span>
+
+                        <h2>Validación</h2>
+                    </div>
+
+                    <div id="statusIndicator" class="status-indicator">
+                        Pendiente
+                    </div>
+
+                </div>
+
+
+                <div id="resultado" class="results-content">
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ✓
+                        </div>
+
+                        <p>
+                            Los resultados de la validación
+                            aparecerán aquí.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="validator-footer">
+
+                <span>Validador CURP & RFC</span>
+
+                <span>Herramienta de consulta</span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
     <script src="script.js"></script>
 
 </body>

@@ -1,60 +1,486 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* =========================================
+   RESET
+========================================= */
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
+:root {
+    --background: #0b1120;
+    --background-secondary: #111827;
+
+    --card: #ffffff;
+    --border: #e5e7eb;
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+
+    --text: #111827;
+    --text-secondary: #6b7280;
+
+    --success: #059669;
+    --danger: #dc2626;
+
+    --radius: 14px;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.18),
+            transparent 35%
+        ),
+        var(--background);
+
+    min-height: 100vh;
+
+    color: var(--text);
+}
+
+
+/* =========================================
+   CONTENEDOR
+========================================= */
+
+.validator-wrapper {
+    min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding: 40px 20px;
 }
 
-.card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+/* =========================================
+   CARD PRINCIPAL
+========================================= */
+
+.validator-card {
     width: 100%;
-    max-width: 400px; 
+    max-width: 760px;
+
+    background: var(--card);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
+
+/* =========================================
+   HEADER
+========================================= */
+
+.validator-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #1e3a8a
+        );
+
+    color: white;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.brand-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    font-size: 24px;
+    font-weight: 700;
 }
 
-label {
+.eyebrow {
     display: block;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #93c5fd;
+
     margin-bottom: 5px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+.validator-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
 }
 
+.validator-header p {
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   FORMULARIO
+========================================= */
+
+.form-section {
+    padding: 32px;
+}
+
+.section-title {
+    display: flex;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+.section-number {
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    padding-top: 3px;
+}
+
+.section-title h2 {
+    font-size: 18px;
+
+    margin-bottom: 4px;
+}
+
+.section-title p {
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.input-group-custom {
+    margin-bottom: 22px;
+}
+
+.input-group-custom label {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.input-group-custom label span {
+    font-weight: 500;
+
+    color: var(--text-secondary);
+}
+
+.input-wrapper {
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    transition: all 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.input-prefix {
+    padding: 13px 14px;
+
+    background: #f8fafc;
+
+    border-right: 1px solid var(--border);
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.input-wrapper input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    padding: 13px 14px;
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    background: white;
+}
+
+.input-wrapper input::placeholder {
+    color: #9ca3af;
+
+    text-transform: none;
+}
+
+
+/* =========================================
+   ERRORES
+========================================= */
+
 .error {
-    color: red;
+    display: block;
+
+    margin-top: 7px;
+
+    color: var(--danger);
+
     font-size: 12px;
 }
 
-.d-flex {
+
+/* =========================================
+   BOTÓN
+========================================= */
+
+.validate-button {
+    width: calc(100% - 64px);
+
+    margin: 0 32px 32px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 14px 18px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
     display: flex;
+
     justify-content: space-between;
+
+    align-items: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-button {
-    width: 48%;
-    margin-top: 15px;
+.validate-button:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+.button-arrow {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   RESULTADOS
+========================================= */
+
+.results-section {
+    border-top: 1px solid var(--border);
+
+    background: #f8fafc;
+
+    padding: 28px 32px;
+}
+
+.results-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.results-header h2 {
+    font-size: 18px;
+
+    margin: 0;
+}
+
+.status-indicator {
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background: #e5e7eb;
+
+    color: #6b7280;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.results-content {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    min-height: 100px;
+}
+
+.empty-state {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.empty-state p {
+    margin: 0;
+}
+
+.empty-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.validator-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 16px 32px;
+
+    border-top: 1px solid var(--border);
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .validator-wrapper {
+        padding: 20px 12px;
+    }
+
+    .validator-header {
+        padding: 24px;
+    }
+
+    .validator-header h1 {
+        font-size: 23px;
+    }
+
+    .form-section {
+        padding: 24px;
+    }
+
+    .validate-button {
+        width: calc(100% - 48px);
+
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    .results-section {
+        padding: 24px;
+    }
+
+    .validator-footer {
+        padding: 16px 24px;
+    }
 }
